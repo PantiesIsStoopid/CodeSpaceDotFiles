@@ -6,6 +6,8 @@ if [ "$(id -u)" -eq 0 ]; then
   exit 1
 fi
 
+clear
+
 # Step 1: Install prerequisites
 echo "Installing dependencies..."
 sudo apt update && sudo apt install -y \
