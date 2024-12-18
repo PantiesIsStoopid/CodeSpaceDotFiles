@@ -6,8 +6,6 @@ if [ "$(id -u)" -eq 0 ]; then
   exit 1
 fi
 
-clear
-
 # Step 1: Install prerequisites
 echo "Installing dependencies..."
 sudo apt update && sudo apt install -y \
@@ -15,7 +13,18 @@ sudo apt update && sudo apt install -y \
     curl \
     unzip \
     jq \
-    fonts-powerline
+    fonts-powerline \
+    git \
+    build-essential \
+    cmake \
+    libasound2-dev \
+    libpulse-dev \
+    libsdl2-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    libmpdclient-dev \
+    libglib2.0-dev \
+    libssl-dev
 
 # Step 2: Install Oh My Posh
 echo "Installing Oh My Posh..."
@@ -42,8 +51,29 @@ echo "Downloading the Cobalt 2 theme..."
 mkdir -p ~/themes
 curl -o ~/themes/cobalt2.omp.json https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/cobalt2.omp.json
 
-# Step 5: Apply changes by reloading the profile
+# Step 5: Install Fastfetch
+echo "Installing Fastfetch..."
+git clone https://github.com/FelixKratz/fastfetch.git ~/fastfetch
+cd ~/fastfetch || exit
+make
+sudo make install
+
+# Step 6: Install Yazi
+echo "Installing Yazi..."
+git clone https://github.com/muennich/yazi.git ~/yazi
+cd ~/yazi || exit
+make
+sudo make install
+
+# Step 7: Install Cava
+echo "Installing Cava..."
+git clone https://github.com/karlstav/cava.git ~/cava
+cd ~/cava || exit
+make
+sudo make install
+
+# Step 8: Apply changes by reloading the profile
 echo "Applying changes. Please restart your terminal or run 'source $SHELL_PROFILE' to apply."
 source "$SHELL_PROFILE"
 
-echo "Oh My Posh has been installed with the Cobalt 2 theme!"
+echo "Oh My Posh with the Cobalt 2 theme, Fastfetch, Yazi, and Cava have been installed successfully!"
