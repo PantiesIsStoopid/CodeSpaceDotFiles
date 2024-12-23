@@ -26,7 +26,6 @@ sudo apt install -y \
   ccache \
   openssl \
   build-essential \
-  fastfetch \
   terminal-icons \
   psreadline
 
