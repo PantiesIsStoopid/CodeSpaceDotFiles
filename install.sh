@@ -30,6 +30,9 @@ sudo apt install -y \
   terminal-icons \
   psreadline
 
+# Install oh-my-posh
+curl -s https://ohmyposh.dev/install.sh | sudo bash
+
 # -----------------------------------------------------
 # Setup .bashrc
 # -----------------------------------------------------
@@ -206,7 +209,6 @@ fi
 
 # Fastfetch
 if [[ $(tty) == *"pts"* ]]; then
-else
     echo
     if [ -f /bin/qtile ]; then
         echo "Start Qtile X11 with command Qtile"
@@ -220,11 +222,6 @@ fi
 
 # Clear the console
 clear
-
-# Run Fastfetch only if not in Visual Studio Code Terminal
-if [ "$TERM_PROGRAM" != "vscode" ]; then
-  fastfetch --config "$(dirname "$(dirname "$0")")/fastfetch/fastconfig.jsonc"
-fi
 
 EOF
 
